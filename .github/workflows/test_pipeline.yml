@@ -38,8 +38,14 @@ jobs:
       - name: Ejecutar todas las pruebas en orden
         run: mvn test -Dtest=orangeHrm.runners.RunnerCamposVacios,orangeHrm.runners.RunnerLogFallido,orangeHrm.runners.RunnerLoginExit,orangeHrm.runners.RunnerUserVacio
 
-      - name: Subir dependency graph
-        uses: advanced-security/maven-dependency-submission-action@v4
+      - name: Generar dependency graph y subirlo manualmente
+        run: |
+          mvn dependency:tree -DoutputFile=dependencies.txt -DoutputType=text
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            -d @dependencies.txt \
+            https://api.github.com/repos/${{ github.repository }}/dependency-graph/snapshots
+
 
       - name: Publicar resultados de pruebas
         uses: actions/upload-artifact@v4
