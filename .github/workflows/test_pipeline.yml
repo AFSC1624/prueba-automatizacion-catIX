@@ -50,7 +50,7 @@ jobs:
         run: ls -R
         
       - name: Verificar reportes de pruebas
-        run: ls -lah target/surefire-reports || echo "No se encontraron reportes"
+        run: ls -lah target/surefire-reports
         
       - name: Publicar resultados de pruebas
         uses: actions/upload-artifact@v4
