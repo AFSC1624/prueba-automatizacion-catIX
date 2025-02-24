@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    environment: pr
 
     steps:
       - name: Checkout del código fuente
