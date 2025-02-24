@@ -1,0 +1,43 @@
+name: Java Tests Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout código fuente
+        uses: actions/checkout@v3
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'  # También puedes usar 'adopt'
+          java-version: '17'
+
+      - name: Verificar dependencias con Maven
+        run: mvn clean install -DskipTests
+
+      - name: Ejecutar pruebas con Maven
+        run: mvn dependency:tree
+      
+      - name: Subir dependency graph
+        uses: advanced-security/maven-dependency-submission-action@v4
+        
+      - name: Publicar resultados de pruebas
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: target/surefire-reports
