@@ -85,6 +85,9 @@
       <scope>test</scope>
     </dependency>
 
+
+
+
   </dependencies>
 
   <build>
@@ -138,6 +141,14 @@
           <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.8.2</version>
+      </plugin>
+
+
       <plugin>
         <groupId>net.serenity-bdd.maven.plugins</groupId>
         <artifactId>serenity-maven-plugin</artifactId>

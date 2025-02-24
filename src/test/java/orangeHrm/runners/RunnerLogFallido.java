@@ -13,6 +13,11 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/feature",
         tags = "@loginFallido",
         glue = "orangeHrm.stepsDefinitions",
+        plugin = {
+                "pretty",
+                "json:target/cucumber-reports/cucumber.json",
+                "html:target/cucumber-reports/cucumber-html-report.html"
+        },
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 
