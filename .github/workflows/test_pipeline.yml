@@ -34,8 +34,8 @@ jobs:
         run: mvn dependency:tree
       
       - name: Subir dependency graph
-        uses: advanced-security/maven-dependency-submission-action@v3
-
+        uses: uses: advanced-security/maven-dependency-submission-action@v4
+        
       - name: Publicar resultados de pruebas
         uses: actions/upload-artifact@v4
         with:
