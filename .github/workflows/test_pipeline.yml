@@ -41,10 +41,10 @@ jobs:
       - name: Generar dependency graph y subirlo manualmente
         run: |
           mvn dependency:tree -DoutputFile=dependencies.txt -DoutputType=text
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
             -d @dependencies.txt \
-            https://api.github.com/repos/${{ github.repository }}/dependency-graph/snapshots
+            https://api.github.com/repos/prueba-automatizacion-catIX/dependency-graph/snapshots
 
       - name: Verificar archivos generados
         run: ls -R
