@@ -12,7 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usar GITHUB_TOKEN en lugar de PAT
+      GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
     environment: pr
 
     permissions:
