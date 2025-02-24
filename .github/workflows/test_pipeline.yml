@@ -46,7 +46,12 @@ jobs:
             -d @dependencies.txt \
             https://api.github.com/repos/${{ github.repository }}/dependency-graph/snapshots
 
-
+      - name: Verificar archivos generados
+        run: ls -R
+        
+      - name: Verificar reportes de pruebas
+        run: ls -lah target/surefire-reports || echo "No se encontraron reportes"
+        
       - name: Publicar resultados de pruebas
         uses: actions/upload-artifact@v4
         with:
