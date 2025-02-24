@@ -37,7 +37,7 @@ jobs:
         uses: advanced-security/maven-dependency-submission-action@v3
 
       - name: Publicar resultados de pruebas
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: target/surefire-reports
