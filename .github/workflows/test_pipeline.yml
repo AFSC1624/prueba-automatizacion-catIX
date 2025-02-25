@@ -43,7 +43,7 @@ jobs:
           mvn test -Dtest=orangeHrm.runners.RunnerUserVacio || true
 
       - name: Generar dependency graph
-        run: mvn dependency:tree -DoutputFile=dependencies.txt -DoutputType=text
+        run: mvn dependency:list -DoutputFile=dependencies.txt -DoutputType=text
 
       - name: Subir dependency graph
         uses: advanced-security/maven-dependency-submission-action@v4
