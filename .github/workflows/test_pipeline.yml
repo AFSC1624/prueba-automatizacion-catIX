@@ -42,6 +42,17 @@ jobs:
           mvn test -Dtest=orangeHrm.runners.RunnerLoginExit || true
           mvn test -Dtest=orangeHrm.runners.RunnerUserVacio || true
 
+      - name: Generar dependency graph en formato JSON
+        run: mvn dependency:resolve -DoutputFile=dependencies.json -DoutputType=json
+
+      - name: Subir dependency graph a GitHub
+        run: |
+          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+               -H "Accept: application/vnd.github+json" \
+               -d @dependencies.json \
+               https://api.github.com/repos/AFSC1624/prueba-automatizacion-catIX/dependency-graph/snapshots
+
+
       - name: Verificar reportes de pruebas
         run: |
           if [ -d "target/surefire-reports" ]; then
@@ -50,8 +61,8 @@ jobs:
             echo "No se encontraron reportes de pruebas."
           fi
 
-      - name: Publicar resultados de pruebas
+      - name: Publicar dependency graph como artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
-          path: target/surefire-reports
+          name: dependency-graph
+          path: dependencies.json
