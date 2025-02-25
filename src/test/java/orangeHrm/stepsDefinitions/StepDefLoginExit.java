@@ -6,10 +6,7 @@ import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Managed;
-import orangeHrm.tasks.LinkAgregarUserTask;
-import orangeHrm.tasks.LinkDatosUsuarioTask;
-import orangeHrm.tasks.LinkExitosoTask;
-import orangeHrm.tasks.OpenUrlOhrmTask;
+import orangeHrm.tasks.*;
 import org.openqa.selenium.WebDriver;
 
 import static net.serenitybdd.screenplay.actors.OnStage.*;
@@ -59,10 +56,14 @@ public class StepDefLoginExit {
 
     @When("Dar click boton save")
     public void darClickBotonSave() {
-
+        theActorCalled("user").wasAbleTo(
+                LinkGuardarUserTask.GuardarUser());
     }
+
+
     @Then("Usuario Creado")
     public void usuarioCreado() {
+
 
     }
 
