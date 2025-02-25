@@ -42,14 +42,6 @@ jobs:
           mvn test -Dtest=orangeHrm.runners.RunnerLoginExit || true
           mvn test -Dtest=orangeHrm.runners.RunnerUserVacio || true
 
-      - name: Subir dependency graph a GitHub
-        run: |
-          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-               -H "Accept: application/vnd.github+json" \
-               -d @dependencies.json \
-               https://api.github.com/repos/AFSC1624/prueba-automatizacion-catIX/dependency-graph/snapshots
-
-
       - name: Verificar reportes de pruebas
         run: |
           if [ -d "target/surefire-reports" ]; then
