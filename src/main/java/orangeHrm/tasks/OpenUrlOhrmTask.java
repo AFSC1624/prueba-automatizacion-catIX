@@ -16,6 +16,4 @@ public class OpenUrlOhrmTask implements Task {
     }
     public static OpenUrlOhrmTask openBrowser(){ return  instrumented(OpenUrlOhrmTask.class);
     }
-
-
 }

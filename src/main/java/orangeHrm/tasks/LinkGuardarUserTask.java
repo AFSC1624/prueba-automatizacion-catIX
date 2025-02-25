@@ -15,10 +15,7 @@ public class LinkGuardarUserTask implements Task {
 
           actor.attemptsTo(new Performable[]{Click.on(LinkFallidoUi.BOTON_SAVE)});
      }
-
-
      public static LinkGuardarUserTask GuardarUser(){ return instrumented(LinkGuardarUserTask.class);}
-
 }
 
 

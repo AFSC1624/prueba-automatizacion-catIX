@@ -1,7 +1,6 @@
 package orangeHrm.ui;
 
 
-import io.appium.java_client.pagefactory.bys.builder.ByChained;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
@@ -20,10 +19,6 @@ public class LinkFallidoUi {
 
     public static Target TXT_ADMIN=Target.the("Agregar User")
             .located(By.xpath("//span[text()='Admin']"));
-
-//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[1]/button
-
-
 
 
     public static Target BOTON_AGREGARUSUARIO=Target.the("BOTON AGREGAR USUARIO")
@@ -45,8 +40,7 @@ public class LinkFallidoUi {
             .located(By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div[2]/div[2]"));
 
     public static Target TXT_EMPLOYEE_NAME=Target.the("texto nombre empleado")
-            .located(By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div/input"));
-
+            .located(By.xpath("//input[@placeholder='Type for hints...']"));
 
     public static Target TXT_USERNAME=Target.the("texto username")
             .located(By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input"));
@@ -60,7 +54,5 @@ public class LinkFallidoUi {
 
     public static Target BOTON_SAVE=Target.the("guardar")
             .located(By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[3]/button[2]"));
-
-
 
 }

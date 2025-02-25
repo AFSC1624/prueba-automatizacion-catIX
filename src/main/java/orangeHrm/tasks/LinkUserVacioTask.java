@@ -20,12 +20,6 @@ public class LinkUserVacioTask implements Task {
         actor.attemptsTo( Enter.theValue("admin").into(INPUT_CLAVE));
         actor.attemptsTo(new Performable[]{Click.on(LinkFallidoUi.BOTON_INICIOSESION)});
     }
-
     public static LinkUserVacioTask loginUsuarioClave()
     { return instrumented(LinkUserVacioTask.class);}
-
-
-
-
-
 }

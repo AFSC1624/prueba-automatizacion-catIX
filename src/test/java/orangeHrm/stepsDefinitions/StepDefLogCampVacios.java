@@ -9,13 +9,10 @@ import net.thucydides.core.annotations.Managed;
 import orangeHrm.questions.ValidacionPasswordVacio;
 import orangeHrm.questions.ValidacionUsuarioVacio;
 import orangeHrm.tasks.LinkCamposVaciosTask;
-import orangeHrm.tasks.LinkUserVacioTask;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -49,9 +46,6 @@ public class StepDefLogCampVacios {
         theActorInTheSpotlight().should(seeThat("La respuesta fue: ", ValidacionPasswordVacio.assertion(),Matchers.equalTo(true)));
         System.out.println("la prueba fue exitosa");
     }
-
-
-
 
     @After
     public void closeBrowser(){

@@ -23,9 +23,4 @@ public class LinkCamposVaciosTask implements Task {
 
     public static LinkCamposVaciosTask LinkCamposVaciosTask()
     { return instrumented(LinkCamposVaciosTask.class);}
-
-
-
-
-
 }

@@ -42,8 +42,6 @@ public class StepDefLogFallido {
         theActorInTheSpotlight().attemptsTo(
                 LinkClaveFallidaTask.loginUsuarioClave()
         );
-
-
     }
 
 

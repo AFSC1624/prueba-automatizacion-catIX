@@ -8,7 +8,6 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Managed;
 import orangeHrm.tasks.*;
 import org.openqa.selenium.WebDriver;
-
 import static net.serenitybdd.screenplay.actors.OnStage.*;
 
 
@@ -63,12 +62,7 @@ public class StepDefLoginExit {
 
     @Then("Usuario Creado")
     public void usuarioCreado() {
-
-
     }
-
-
-
 
     @After
     public void closeBrowser(){
@@ -76,7 +70,4 @@ public class StepDefLoginExit {
             driver.quit();
         }
     }
-
-
-
 }

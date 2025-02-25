@@ -18,8 +18,4 @@ public class ValidacionPasswordVacio implements Question<Boolean> {
     public static Question<Boolean> assertion(){
         return  new ValidacionPasswordVacio();
     }
-
-
-
-
 }
