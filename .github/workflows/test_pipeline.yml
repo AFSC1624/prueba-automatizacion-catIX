@@ -48,9 +48,6 @@ jobs:
       - name: Subir dependency graph
         uses: advanced-security/maven-dependency-submission-action@v4
 
-      - name: Verificar archivos generados
-        run: ls -R
-
       - name: Verificar reportes de pruebas
         run: |
           if [ -d "target/surefire-reports" ]; then
