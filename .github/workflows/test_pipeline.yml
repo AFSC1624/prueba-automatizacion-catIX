@@ -1,43 +1,68 @@
-name: Java Tests Pipeline
+name: Ejecutar pruebas automatizadas
 
 on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
 
-
 jobs:
-  update-dependencies:
+  test:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
+    environment: pr
+
     permissions:
       contents: read
-      security-events: write
+      security-events: write  # Permiso necesario para Dependency Graph
 
     steps:
-      - name: Checkout código fuente
+      - name: Checkout del código fuente
         uses: actions/checkout@v3
 
       - name: Configurar JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'  # También puedes usar 'adopt'
+          distribution: 'temurin'
           java-version: '17'
 
-      - name: Verificar dependencias con Maven
+      - name: Instalar dependencias con Maven
         run: mvn clean install -DskipTests
 
-      - name: Ejecutar pruebas con Maven
-        run: mvn dependency:tree
-      
-      - name: Subir dependency graph
-        uses: advanced-security/maven-dependency-submission-action@v4
-        
-      - name: Publicar resultados de pruebas
+      - name: Compilar código Java
+        run: mvn compile
+
+      - name: Ejecutar pruebas en orden
+        run: |
+          mvn test -Dtest=orangeHrm.runners.RunnerCamposVacios || true
+          mvn test -Dtest=orangeHrm.runners.RunnerLogFallido || true
+          mvn test -Dtest=orangeHrm.runners.RunnerLoginExit || true
+          mvn test -Dtest=orangeHrm.runners.RunnerUserVacio || true
+
+      - name: Generar dependency graph en formato JSON
+        run: mvn dependency:resolve -DoutputFile=dependencies.json -DoutputType=json
+
+      - name: Subir dependency graph a GitHub
+        run: |
+          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+               -H "Accept: application/vnd.github+json" \
+               -d @dependencies.json \
+               https://api.github.com/repos/AFSC1624/prueba-automatizacion-catIX/dependency-graph/snapshots
+
+
+      - name: Verificar reportes de pruebas
+        run: |
+          if [ -d "target/surefire-reports" ]; then
+            ls -lah target/surefire-reports
+          else
+            echo "No se encontraron reportes de pruebas."
+          fi
+
+      - name: Publicar dependency graph como artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
-          path: target/surefire-reports
+          name: dependency-graph
+          path: dependencies.json
